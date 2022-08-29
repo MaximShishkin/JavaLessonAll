@@ -1,4 +1,4 @@
-package ru.shishkin.javaLessonModule1.lesson10;
+package ru.shishkin.javaLessonModule1.lesson9;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -14,7 +14,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class PanelLesson10 extends JPanel {
+public class PanelLesson9 extends JPanel {
     // для получения целых случайных значений
     private Random random = new Random();
     // координаты
@@ -128,7 +128,7 @@ public class PanelLesson10 extends JPanel {
     }
 
     // конструктор класса
-    PanelLesson10() {
+    PanelLesson9() {
         addKeyListener(new myKey());
         setFocusable(true);
 

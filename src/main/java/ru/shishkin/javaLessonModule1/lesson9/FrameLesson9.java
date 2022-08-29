@@ -1,16 +1,16 @@
-package ru.shishkin.javaLessonModule1.lesson10;
+package ru.shishkin.javaLessonModule1.lesson9;
 
 import javax.swing.JFrame;
 
-public class FrameLesson10 extends JFrame {
+public class FrameLesson9 extends JFrame {
     // конструктор класса
-    FrameLesson10() {
+    FrameLesson9() {
         // название
         setTitle("Stark Vs Tanos");
         // устанавливаем размеры окна
         setBounds(10, 10, 1300, 700);
         // добавляем панель к окну
-        add(new PanelLesson10());
+        add(new PanelLesson9());
         // запретить изменять рамки окна
         setResizable(false);
         // закрытие приложения
