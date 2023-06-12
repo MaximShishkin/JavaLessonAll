@@ -5,7 +5,6 @@ import java.awt.*;
 import java.util.AbstractMap;
 import java.util.EnumMap;
 
-
 public class BombermanComponent extends JComponent implements FloorListener {
     // Constants are static by definition.
     private final static int SQUARE_SIZE = 40;

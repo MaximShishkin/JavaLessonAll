@@ -1,6 +1,5 @@
 package ru.shishkin.game;
 
-
 public class Enemy extends AbstractCharacter {
     private Move currentDirection;
 

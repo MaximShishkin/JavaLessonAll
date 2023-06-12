@@ -1,9 +1,7 @@
 package ru.shishkin.game;
 
-import game.AbstractCharacter.Move;
-
 import java.util.*;
-
+import ru.shishkin.game.AbstractCharacter.Move;
 
 public class Floor {
     // Constants are static by definition.

@@ -3,7 +3,6 @@ package ru.shishkin.game;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 
-
 public class Player extends AbstractCharacter {
 
     private final static int PLAYER_START_X = 60;
