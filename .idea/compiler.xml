@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="bomberman" />
         <module name="JavaLessonAll" />
         <module name="flappy-bird" />
         <module name="JavaLessonModule1" />
