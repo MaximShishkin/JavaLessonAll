@@ -1,9 +1,9 @@
 package ru.shishkin.game;
 
 /**
- *  This enum represents the different types of components the the floor can have.
+ * This enum represents the different types of components the the floor can have.
  */
-public enum FloorTile 	// Inspector complains on enum not being used, which is not the case.
+public enum FloorTile    // Inspector complains on enum not being used, which is not the case.
 {
     /**
      * This enum-type represents the FLOOR on which the AbstractCharacters can move and drop bombs.

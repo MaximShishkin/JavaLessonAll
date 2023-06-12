@@ -5,14 +5,12 @@ package ru.shishkin.game;
  * as well as destroying BREAKABLEBLOCKs. It needs a row and column -index that is used for logic and painting.
  * Its duration represents how many timesteps it will exist before it is removed.
  */
-public class Explosion
-{
+public class Explosion {
     private int rowIndex;
     private int colIndex;
     private int duration = 5;
 
-    public Explosion(int rowIndex, int colIndex)
-    {
+    public Explosion(int rowIndex, int colIndex) {
         this.rowIndex = rowIndex;
         this.colIndex = colIndex;
     }
