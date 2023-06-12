@@ -1,4 +1,4 @@
-package ru.shishkin.game;
+package ru.shishkin.bomber;
 
 public class Bomb {
     // Constants are static by definition.

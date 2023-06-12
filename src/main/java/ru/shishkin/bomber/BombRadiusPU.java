@@ -1,4 +1,4 @@
-package ru.shishkin.game;
+package ru.shishkin.bomber;
 
 /**
  * This class extends AbstractPowerup and receives fundamental methods such as getters for its coordinates and size. This class

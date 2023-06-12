@@ -1,4 +1,4 @@
-package ru.shishkin.game;
+package ru.shishkin.bomber;
 
 /**
  * This class is the basis for powerups, and the contents are shared between the different types of powerups that extends

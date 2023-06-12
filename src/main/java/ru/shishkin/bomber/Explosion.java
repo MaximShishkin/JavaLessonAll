@@ -1,4 +1,4 @@
-package ru.shishkin.game;
+package ru.shishkin.bomber;
 
 /**
  * This class represents the explosion, or the "fireballs", that are capable of killing an Enemy or a Player,

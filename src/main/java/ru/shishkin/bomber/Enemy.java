@@ -1,4 +1,4 @@
-package ru.shishkin.game;
+package ru.shishkin.bomber;
 
 public class Enemy extends AbstractCharacter {
     private Move currentDirection;

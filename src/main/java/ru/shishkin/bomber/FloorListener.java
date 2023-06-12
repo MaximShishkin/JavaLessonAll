@@ -1,4 +1,4 @@
-package ru.shishkin.game;
+package ru.shishkin.bomber;
 
 /**
  * This Interface class is excluded to one method, floorChanged which is implemented in BombermanComponent

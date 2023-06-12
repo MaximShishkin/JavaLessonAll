@@ -1,4 +1,4 @@
-package ru.shishkin.game;
+package ru.shishkin.bomber;
 
 public class AbstractCharacter {
     private final static int SIZE = 30;
