@@ -5,7 +5,6 @@ import java.util.*;
 import ru.shishkin.bomber.AbstractCharacter.Move;
 
 public class Floor {
-    // Constants are static by definition.
     private final static double CHANCE_FOR_BREAKABLE_BLOCK = 0.4;
     private final static double CHANCE_FOR_RADIUS_POWERUP = 0.2;
     private final static double CHANCE_FOR_COUNTER_POWERUP = 0.8;
@@ -31,7 +30,7 @@ public class Floor {
     }
 
     public static int pixelToSquare(int pixelCoord) {
-        return ((pixelCoord + BombermanComponent.getSquareSize() - 1) / BombermanComponent.getSquareSize()) - 1;
+        return ((pixelCoord + Component.getSquareSize() - 1) / Component.getSquareSize()) - 1;
     }
 
     public FloorTile getFloorTile(int rowIndex, int colIndex) {
@@ -82,18 +81,19 @@ public class Floor {
         bombList.add(bomb);
     }
 
-    public void createPlayer(BombermanComponent bombermanComponent, Floor floor) {
+    public void createPlayer(Component bombermanComponent, Floor floor) {
         player = new Player(bombermanComponent, floor);
     }
 
     public int squareToPixel(int squareCoord) {
-        return squareCoord * BombermanComponent.getSquareSize();
+        return squareCoord * Component.getSquareSize();
     }
 
     public void moveEnemies() {
         if (enemyList.isEmpty()) {
             isGameOver = true;
         }
+
         for (Enemy e : enemyList) {
             Move currentDirection = e.getCurrentDirection();
 
@@ -135,14 +135,17 @@ public class Floor {
         Collection<Integer> bombIndexesToBeRemoved = new ArrayList<>();
         explosionList.clear();
         int index = 0;
+
         for (Bomb b : bombList) {
             b.setTimeToExplosion(b.getTimeToExplosion() - 1);
+
             if (b.getTimeToExplosion() == 0) {
                 bombIndexesToBeRemoved.add(index);
                 explosionList.add(b);
             }
             index++;
         }
+
         for (int i : bombIndexesToBeRemoved) {
             bombList.remove(i);
         }
@@ -150,12 +153,15 @@ public class Floor {
 
     public void explosionHandler() {
         Collection<Explosion> explosionsToBeRemoved = new ArrayList<>();
+
         for (Explosion e : explosionCoords) {
             e.setDuration(e.getDuration() - 1);
+
             if (e.getDuration() == 0) {
                 explosionsToBeRemoved.add(e);
             }
         }
+
         for (Explosion e : explosionsToBeRemoved) {
             explosionCoords.remove(e);
         }
@@ -168,16 +174,20 @@ public class Floor {
             boolean westOpen = true;
             boolean eastOpen = true;
             explosionCoords.add(new Explosion(eRow, eCol));
+
             for (int i = 1; i < e.getExplosionRadius() + 1; i++) {
                 if (eRow - i >= 0 && northOpen) {
                     northOpen = bombCoordinateCheck(eRow - i, eCol, northOpen);
                 }
+
                 if (eRow - i <= height && southOpen) {
                     southOpen = bombCoordinateCheck(eRow + i, eCol, southOpen);
                 }
+
                 if (eCol - i >= 0 && westOpen) {
                     westOpen = bombCoordinateCheck(eRow, eCol - i, westOpen);
                 }
+
                 if (eCol + i <= width && eastOpen) {
                     eastOpen = bombCoordinateCheck(eRow, eCol + i, eastOpen);
                 }
@@ -196,11 +206,13 @@ public class Floor {
     public void enemyInExplosion() {
         for (Explosion tup : explosionCoords) {
             Collection<Enemy> enemiesToBeRemoved = new ArrayList<>();
+
             for (Enemy e : enemyList) {
                 if (collidingCircles(e, squareToPixel(tup.getColIndex()), squareToPixel(tup.getRowIndex()))) {
                     enemiesToBeRemoved.add(e);
                 }
             }
+
             for (Enemy e : enemiesToBeRemoved) {
                 enemyList.remove(e);
             }
@@ -216,6 +228,7 @@ public class Floor {
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 double r = Math.random();
+
                 if (r < CHANCE_FOR_BREAKABLE_BLOCK) {
                     tiles[i][j] = FloorTile.BREAKABLEBLOCK;
                 }
@@ -232,20 +245,19 @@ public class Floor {
 
     private void spawnPowerup(int rowIndex, int colIndex) {
         double r = Math.random();
+
         if (r < CHANCE_FOR_RADIUS_POWERUP) {
-            powerupList.add(new BombRadiusPU(squareToPixel(rowIndex) + BombermanComponent.getSquareMiddle(), squareToPixel(colIndex) + BombermanComponent.getSquareMiddle()));
+            powerupList.add(new BombRadius(squareToPixel(rowIndex) + Component.getSquareMiddle(), squareToPixel(colIndex) + Component.getSquareMiddle()));
         } else if (r > CHANCE_FOR_COUNTER_POWERUP) {
-            powerupList.add(new BombCounterPU(squareToPixel(rowIndex) + BombermanComponent.getSquareMiddle(), squareToPixel(colIndex) + BombermanComponent.getSquareMiddle()));
+            powerupList.add(new BombCounter(squareToPixel(rowIndex) + Component.getSquareMiddle(), squareToPixel(colIndex) + Component.getSquareMiddle()));
         }
     }
 
     private void placeUnbreakableAndGrass() {
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                //Makes frame of unbreakable
                 if ((i == 0) || (j == 0) || (i == height - 1) || (j == width - 1) || i % 2 == 0 && j % 2 == 0) {
                     tiles[i][j] = FloorTile.UNBREAKABLEBLOCK;
-                    //Every-other unbreakable
                 } else if (tiles[i][j] != FloorTile.BREAKABLEBLOCK) {
                     tiles[i][j] = FloorTile.FLOOR;
                 }
@@ -258,17 +270,21 @@ public class Floor {
             while (true) {
                 int randRowIndex = 1 + (int) (Math.random() * (height - 2));
                 int randColIndex = 1 + (int) (Math.random() * (width - 2));
+
                 if (getFloorTile(randRowIndex, randColIndex) != FloorTile.FLOOR) {
                     continue;
                 }
+
                 if (randRowIndex == 1 && randColIndex == 1 || randRowIndex == 1 && randColIndex == 2 || randRowIndex == 2 && randColIndex == 1) {
                     continue;
                 }
+
                 if ((randRowIndex % 2) == 0) {
-                    enemyList.add(new Enemy(squareToPixel(randColIndex) + BombermanComponent.getSquareMiddle(), squareToPixel(randRowIndex) + BombermanComponent.getSquareMiddle(), true));
+                    enemyList.add(new Enemy(squareToPixel(randColIndex) + Component.getSquareMiddle(), squareToPixel(randRowIndex) + Component.getSquareMiddle(), true));
                 } else {
-                    enemyList.add(new Enemy(squareToPixel(randColIndex) + BombermanComponent.getSquareMiddle(), squareToPixel(randRowIndex) + BombermanComponent.getSquareMiddle(), false));
+                    enemyList.add(new Enemy(squareToPixel(randColIndex) + Component.getSquareMiddle(), squareToPixel(randRowIndex) + Component.getSquareMiddle(), false));
                 }
+
                 break;
             }
         }
@@ -277,7 +293,7 @@ public class Floor {
 
     public boolean collisionWithEnemies() {
         for (Enemy enemy : enemyList) {
-            if (collidingCircles(player, enemy.getX() - BombermanComponent.getSquareMiddle(), enemy.getY() - BombermanComponent.getSquareMiddle())) {
+            if (collidingCircles(player, enemy.getX() - Component.getSquareMiddle(), enemy.getY() - Component.getSquareMiddle())) {
                 return true;
             }
         }
@@ -291,6 +307,7 @@ public class Floor {
             if (abstractCharacter instanceof Player) {
                 playerLeftBomb = bomb.isPlayerLeft();
             }
+
             if (playerLeftBomb && collidingCircles(abstractCharacter, squareToPixel(bomb.getColIndex()), squareToPixel(bomb.getRowIndex()))) {
                 return true;
             }
@@ -298,13 +315,12 @@ public class Floor {
         return false;
     }
 
-
     public boolean collisionWithBlock(AbstractCharacter abstractCharacter) {
-        //Maybe create if statements to only check nearby squares
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 if (getFloorTile(i, j) != FloorTile.FLOOR) {
                     boolean isIntersecting = squareCircleInstersect(i, j, abstractCharacter);
+
                     if (isIntersecting) {
                         return true;
                     }
@@ -316,7 +332,7 @@ public class Floor {
 
     public void collisionWithPowerup() {
         for (AbstractPowerup powerup : powerupList) {
-            if (collidingCircles(player, powerup.getX() - BombermanComponent.getSquareMiddle(), powerup.getY() - BombermanComponent.getSquareMiddle())) {
+            if (collidingCircles(player, powerup.getX() - Component.getSquareMiddle(), powerup.getY() - Component.getSquareMiddle())) {
                 powerup.addToPlayer(player);
                 powerupList.remove(powerup);
                 break;
@@ -349,19 +365,22 @@ public class Floor {
         if (tiles[eRow][eCol] != FloorTile.FLOOR) {
             open = false;
         }
+
         if (tiles[eRow][eCol] == FloorTile.BREAKABLEBLOCK) {
             tiles[eRow][eCol] = FloorTile.FLOOR;
             spawnPowerup(eRow, eCol);
         }
+
         if (tiles[eRow][eCol] != FloorTile.UNBREAKABLEBLOCK) {
             explosionCoords.add(new Explosion(eRow, eCol));
         }
+
         return open;
     }
 
     private boolean collidingCircles(AbstractCharacter abstractCharacter, int x, int y) {
-        int a = abstractCharacter.getX() - x - BombermanComponent.getSquareMiddle();
-        int b = abstractCharacter.getY() - y - BombermanComponent.getSquareMiddle();
+        int a = abstractCharacter.getX() - x - Component.getSquareMiddle();
+        int b = abstractCharacter.getY() - y - Component.getSquareMiddle();
         int a2 = a * a;
         int b2 = b * b;
         double c = Math.sqrt(a2 + b2);
@@ -373,7 +392,7 @@ public class Floor {
         int characterY = abstractCharacter.getY();
 
         int circleRadius = abstractCharacter.getSize() / 2;
-        int squareSize = BombermanComponent.getSquareSize();
+        int squareSize = Component.getSquareSize();
         int squareCenterX = (col * squareSize) + (squareSize / 2);
         int squareCenterY = (row * squareSize) + (squareSize / 2);
 
@@ -383,6 +402,7 @@ public class Floor {
         if (circleDistanceX > (squareSize / 2 + circleRadius)) {
             return false;
         }
+
         if (circleDistanceY > (squareSize / 2 + circleRadius)) {
             return false;
         }
@@ -390,6 +410,7 @@ public class Floor {
         if (circleDistanceX <= (squareSize / 2)) {
             return true;
         }
+
         if (circleDistanceY <= (squareSize / 2)) {
             return true;
         }

@@ -5,15 +5,15 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
-public class BombermanFrame extends JFrame {
+public class Frame extends JFrame {
     private Floor floor;
-    private BombermanComponent bombermanComponent;
+    private Component bombermanComponent;
 
-    public BombermanFrame(final String title, Floor floor) throws HeadlessException {
+    public Frame(final String title, Floor floor) throws HeadlessException {
         super(title);
         this.floor = floor;
         this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        bombermanComponent = new BombermanComponent(floor);
+        bombermanComponent = new Component(floor);
         floor.createPlayer(bombermanComponent, floor);
         setKeyStrokes();
 
@@ -23,7 +23,7 @@ public class BombermanFrame extends JFrame {
         this.setVisible(true);
     }
 
-    public BombermanComponent getBombermanComponent() {
+    public Component getBombermanComponent() {
         return bombermanComponent;
     }
 
@@ -40,7 +40,6 @@ public class BombermanFrame extends JFrame {
     private final Action quit = new AbstractAction() {
         public void actionPerformed(ActionEvent e) {
             dispose();
-
         }
     };
 }

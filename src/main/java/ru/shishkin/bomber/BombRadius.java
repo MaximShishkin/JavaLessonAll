@@ -1,11 +1,7 @@
 package ru.shishkin.bomber;
 
-/**
- * This class extends AbstractPowerup and receives fundamental methods such as getters for its coordinates and size. This class
- * has an addToPlayer-method which adjusts the bombRadius of the player.
- */
-public class BombRadiusPU extends AbstractPowerup {
-    public BombRadiusPU(int rowIndex, int colIndex) {
+public class BombRadius extends AbstractPowerup {
+    public BombRadius(int rowIndex, int colIndex) {
         super(colIndex, rowIndex);
     }
 

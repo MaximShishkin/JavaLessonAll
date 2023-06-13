@@ -16,7 +16,7 @@ public class Engine {
 
     public static void startGame() {
         Floor floor = new Floor(width, height, nrOfEnemies);
-        BombermanFrame frame = new BombermanFrame("Bomberman", floor);
+        Frame frame = new Frame("Bomber", floor);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         floor.addFloorListener(frame.getBombermanComponent());
@@ -31,13 +31,13 @@ public class Engine {
         clockTimer.start();
     }
 
-    private static void gameOver(BombermanFrame frame, Floor floor) {
+    private static void gameOver(Frame frame, Floor floor) {
         clockTimer.stop();
         frame.dispose();
         startGame();
     }
 
-    private static void tick(BombermanFrame frame, Floor floor) {
+    private static void tick(Frame frame, Floor floor) {
         if (floor.getIsGameOver()) {
             gameOver(frame, floor);
         } else {

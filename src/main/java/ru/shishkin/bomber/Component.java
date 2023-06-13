@@ -5,8 +5,7 @@ import java.awt.*;
 import java.util.AbstractMap;
 import java.util.EnumMap;
 
-public class BombermanComponent extends JComponent implements FloorListener {
-    // Constants are static by definition.
+public class Component extends JComponent implements FloorListener {
     private final static int SQUARE_SIZE = 40;
     private final static int CHARACTER_ADJUSTMENT_FOR_PAINT = 15;
     private final static int SQUARE_MIDDLE = SQUARE_SIZE / 2;
@@ -22,7 +21,7 @@ public class BombermanComponent extends JComponent implements FloorListener {
     private final Floor floor;
     private final AbstractMap<FloorTile, Color> colorMap;
 
-    public BombermanComponent(Floor floor) {
+    public Component(Floor floor) {
         this.floor = floor;
 
         colorMap = new EnumMap<>(FloorTile.class);
@@ -65,15 +64,13 @@ public class BombermanComponent extends JComponent implements FloorListener {
                 }
             }
         }
-        // Paint player:
+
         paintPlayer(floor.getPlayer(), g2d);
 
-        //Paint enemies
         for (Enemy e : floor.getEnemyList()) {
             paintEnemy(e, g2d);
         }
 
-        //Paint powerups
         for (AbstractPowerup p : floor.getPowerupList()) {
             if (p.getName().equals("BombCounter")) {
                 g2d.setColor(Color.BLACK);
@@ -83,7 +80,6 @@ public class BombermanComponent extends JComponent implements FloorListener {
             g2d.fillOval(p.getX() - CHARACTER_ADJUSTMENT_FOR_PAINT, p.getY() - CHARACTER_ADJUSTMENT_FOR_PAINT, p.getPowerupSize(), p.getPowerupSize());
         }
 
-        //Paint bombs
         for (Bomb b : floor.getBombList()) {
             g2d.setColor(Color.RED);
             int bombX = floor.squareToPixel(b.getColIndex());
@@ -93,7 +89,6 @@ public class BombermanComponent extends JComponent implements FloorListener {
             g2d.fillOval(bombX + BOMB_ADJUSTMENT_2, bombY + BOMB_ADJUSTMENT_1, BOMB_ADJUSTMENT_1, BOMB_ADJUSTMENT_2);
         }
 
-        //Paint explosions
         g2d.setColor(Color.ORANGE);
         for (Explosion tup : floor.getExplosionCoords()) {
             g2d.fillOval(floor.squareToPixel(tup.getColIndex()) + BOMB_ADJUSTMENT_1, floor.squareToPixel(tup.getRowIndex()) +
@@ -142,34 +137,30 @@ public class BombermanComponent extends JComponent implements FloorListener {
     }
 
     private void paintEnemy(Enemy e, Graphics g2d) {
-        // Paint body
         g2d.setColor(Color.orange);
         g2d.fillOval(e.getX() - CHARACTER_ADJUSTMENT_FOR_PAINT, e.getY() - CHARACTER_ADJUSTMENT_FOR_PAINT, e.getSize(), e.getSize());
-        // Paint brows
+
         g2d.setColor(Color.BLACK);
-        // Paint eyes
         g2d.fillOval(e.getX() - CHARACTER_ADJUSTMENT_FOR_PAINT + 4, e.getY() - CHARACTER_ADJUSTMENT_FOR_PAINT + 9, 7, 7);
         g2d.fillOval(e.getX() - CHARACTER_ADJUSTMENT_FOR_PAINT + PAINT_PARAMETER_19, e.getY() - CHARACTER_ADJUSTMENT_FOR_PAINT + 9, 7, 7);
-        // Paint mouth
+
         g2d.fillOval(e.getX() - CHARACTER_ADJUSTMENT_FOR_PAINT + 5, e.getY() - CHARACTER_ADJUSTMENT_FOR_PAINT + PAINT_PARAMETER_20, PAINT_PARAMETER_20, 2);
-        // Fill eyes
+
         g2d.setColor(Color.RED);
         g2d.fillOval(e.getX() - CHARACTER_ADJUSTMENT_FOR_PAINT + 5, e.getY() - CHARACTER_ADJUSTMENT_FOR_PAINT + 10, 5, 5);
         g2d.fillOval(e.getX() - CHARACTER_ADJUSTMENT_FOR_PAINT + PAINT_PARAMETER_20, e.getY() - CHARACTER_ADJUSTMENT_FOR_PAINT + 10, 5, 5);
-
     }
 
     private void paintPlayer(Player player, Graphics g2d) {
-        // Paint hat
         g2d.setColor(Color.BLUE);
         g2d.fillOval(player.getX() - CHARACTER_ADJUSTMENT_FOR_PAINT + PAINT_PARAMETER_15, player.getY() - CHARACTER_ADJUSTMENT_FOR_PAINT - 2, PAINT_PARAMETER_15, PAINT_PARAMETER_15);
-        // Paint body
+
         g2d.setColor(Color.LIGHT_GRAY);
         g2d.fillOval(player.getX() - CHARACTER_ADJUSTMENT_FOR_PAINT, player.getY() - CHARACTER_ADJUSTMENT_FOR_PAINT, player.getSize(), player.getSize());
-        // Paint face
+
         g2d.setColor(Color.PINK);
         g2d.fillOval(player.getX() - CHARACTER_ADJUSTMENT_FOR_PAINT + 3, player.getY() - CHARACTER_ADJUSTMENT_FOR_PAINT + 3, player.getSize() - 6, player.getSize() - 6);
-        // Paint eyes
+
         g2d.setColor(Color.BLACK);
         g2d.drawLine(player.getX() - CHARACTER_ADJUSTMENT_FOR_PAINT + 10, player.getY() - CHARACTER_ADJUSTMENT_FOR_PAINT + 10, player.getX() - CHARACTER_ADJUSTMENT_FOR_PAINT + 10, player.getY() - CHARACTER_ADJUSTMENT_FOR_PAINT + PAINT_PARAMETER_18);
         g2d.drawLine(player.getX() - CHARACTER_ADJUSTMENT_FOR_PAINT + PAINT_PARAMETER_20, player.getY() - CHARACTER_ADJUSTMENT_FOR_PAINT + 10, player.getX() - CHARACTER_ADJUSTMENT_FOR_PAINT + PAINT_PARAMETER_20, player.getY() - CHARACTER_ADJUSTMENT_FOR_PAINT + PAINT_PARAMETER_18);

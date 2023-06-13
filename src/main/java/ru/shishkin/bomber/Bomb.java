@@ -1,7 +1,6 @@
 package ru.shishkin.bomber;
 
 public class Bomb {
-    // Constants are static by definition.
     private final static int BOMBSIZE = 30;
     private final static int STARTCOUNTDOWN = 100;
     private int timeToExplosion = STARTCOUNTDOWN;

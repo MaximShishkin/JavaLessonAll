@@ -1,11 +1,7 @@
 package ru.shishkin.bomber;
 
-/**
- * This class extends AbstractPowerup and receives fundamental methods such as getters for its coordinates and size. This class
- * has an addToPlayer-method which adjusts the bombCount of the player.
- */
-public class BombCounterPU extends AbstractPowerup {
-    public BombCounterPU(int rowIndex, int colIndex) {
+public class BombCounter extends AbstractPowerup {
+    public BombCounter(int rowIndex, int colIndex) {
         super(colIndex, rowIndex);
     }
 

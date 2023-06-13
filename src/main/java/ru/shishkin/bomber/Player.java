@@ -14,31 +14,26 @@ public class Player extends AbstractCharacter {
     public Action up = new AbstractAction() {
         public void actionPerformed(ActionEvent e) {
             movePlayer(Move.UP);
-
         }
     };
 
     public Action right = new AbstractAction() {
         public void actionPerformed(ActionEvent e) {
             movePlayer(Move.RIGHT);
-
         }
     };
 
     public Action down = new AbstractAction() {
         public void actionPerformed(ActionEvent e) {
             movePlayer(Move.DOWN);
-
         }
     };
 
     public Action left = new AbstractAction() {
         public void actionPerformed(ActionEvent e) {
             movePlayer(Move.LEFT);
-
         }
     };
-
 
     public Action dropBomb = new AbstractAction() {
         public void actionPerformed(ActionEvent e) {
@@ -49,7 +44,7 @@ public class Player extends AbstractCharacter {
         }
     };
 
-    public Player(BombermanComponent bombermanComponent, Floor floor) {
+    public Player(Component bombermanComponent, Floor floor) {
         super(PLAYER_START_X, PLAYER_START_Y, PLAYER_PIXELS_BY_STEP);
         explosionRadius = 1;
         bombCount = 1;
@@ -57,7 +52,7 @@ public class Player extends AbstractCharacter {
         setPlayerButtons(bombermanComponent);
     }
 
-    public void setPlayerButtons(BombermanComponent bombermanComponent) {
+    public void setPlayerButtons(Component bombermanComponent) {
         bombermanComponent.getInputMap().put(KeyStroke.getKeyStroke("RIGHT"), "moveRight");
         bombermanComponent.getInputMap().put(KeyStroke.getKeyStroke("LEFT"), "moveLeft");
         bombermanComponent.getInputMap().put(KeyStroke.getKeyStroke("UP"), "moveUp");
@@ -88,12 +83,15 @@ public class Player extends AbstractCharacter {
 
     private void movePlayer(Move move) {
         move(move);
+
         if (floor.collisionWithBlock(this)) {
             moveBack(move);
         }
+
         if (floor.collisionWithBombs(this)) {
             moveBack(move);
         }
+
         if (floor.collisionWithEnemies()) {
             floor.setIsGameOver(true);
         }
@@ -102,5 +100,4 @@ public class Player extends AbstractCharacter {
         floor.collisionWithPowerup();
         floor.notifyListeners();
     }
-
 }

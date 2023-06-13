@@ -27,11 +27,11 @@ public class Enemy extends AbstractCharacter {
     private Move randomDirection(boolean vertical) {
         assert Move.values().length == 4;
         int pick = (int) (Math.random() * (Move.values().length - 2));
+
         if (vertical) {
             return Move.values()[pick];
         } else {
             return Move.values()[pick + 2];
         }
-
     }
 }

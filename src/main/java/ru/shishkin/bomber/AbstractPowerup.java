@@ -1,10 +1,5 @@
 package ru.shishkin.bomber;
 
-/**
- * This class is the basis for powerups, and the contents are shared between the different types of powerups that extends
- * AbstractPowerup. The classes that extend this class is BombCounterPU and BombRadiusPU. The constructor needs an x and y
- * coordinate that will be the placement for the powerup.
- */
 public class AbstractPowerup {
     private final static int POWERUP_SIZE = 30;
     private final int x;
