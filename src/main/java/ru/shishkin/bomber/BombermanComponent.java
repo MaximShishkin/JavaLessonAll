@@ -12,7 +12,6 @@ public class BombermanComponent extends JComponent implements FloorListener {
     private final static int SQUARE_MIDDLE = SQUARE_SIZE / 2;
     private final static int BOMB_ADJUSTMENT_1 = 5;
     private final static int BOMB_ADJUSTMENT_2 = 10;
-    // Defining painting parameters
     private final static int PAINT_PARAMETER_13 = 13;
     private final static int PAINT_PARAMETER_15 = 15;
     private final static int PAINT_PARAMETER_17 = 17;
@@ -32,12 +31,10 @@ public class BombermanComponent extends JComponent implements FloorListener {
         colorMap.put(FloorTile.BREAKABLEBLOCK, Color.RED);
     }
 
-    // This method is static since each square has the same size.
     public static int getSquareSize() {
         return SQUARE_SIZE;
     }
 
-    // This method is static since each square has the same size.
     public static int getSquareMiddle() {
         return SQUARE_MIDDLE;
     }

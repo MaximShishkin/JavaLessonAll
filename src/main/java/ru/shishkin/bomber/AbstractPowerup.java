@@ -6,7 +6,6 @@ package ru.shishkin.bomber;
  * coordinate that will be the placement for the powerup.
  */
 public class AbstractPowerup {
-    // Constants are static by definition.
     private final static int POWERUP_SIZE = 30;
     private final int x;
     private final int y;

@@ -5,7 +5,6 @@ package ru.shishkin.bomber;
  * has an addToPlayer-method which adjusts the bombRadius of the player.
  */
 public class BombRadiusPU extends AbstractPowerup {
-
     public BombRadiusPU(int rowIndex, int colIndex) {
         super(colIndex, rowIndex);
     }

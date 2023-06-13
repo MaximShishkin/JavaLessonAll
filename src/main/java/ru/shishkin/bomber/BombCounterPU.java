@@ -5,7 +5,6 @@ package ru.shishkin.bomber;
  * has an addToPlayer-method which adjusts the bombCount of the player.
  */
 public class BombCounterPU extends AbstractPowerup {
-
     public BombCounterPU(int rowIndex, int colIndex) {
         super(colIndex, rowIndex);
     }

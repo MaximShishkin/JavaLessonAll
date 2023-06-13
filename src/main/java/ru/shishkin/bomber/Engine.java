@@ -3,17 +3,14 @@ package ru.shishkin.bomber;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 
-public final class Engine {
+public class Engine {
     private static final int TIME_STEP = 30;
     private static int width = 10;
     private static int height = 10;
     private static int nrOfEnemies = 5;
     private static Timer clockTimer = null;
 
-    private Engine() {
-    }
-
-    public static void main(String[] args) {
+    public Engine() {
         startGame();
     }
 

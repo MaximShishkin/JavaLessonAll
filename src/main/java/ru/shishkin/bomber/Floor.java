@@ -131,9 +131,6 @@ public class Floor {
         }
     }
 
-    /**
-     * This method creates a bomb if the given demands are satisfied.
-     */
     public void bombCountdown() {
         Collection<Integer> bombIndexesToBeRemoved = new ArrayList<>();
         explosionList.clear();
@@ -372,7 +369,6 @@ public class Floor {
     }
 
     private boolean squareCircleInstersect(int row, int col, AbstractCharacter abstractCharacter) {
-        //http://stackoverflow.com/questions/401847/circle-rectangle-collision-detection-intersection
         int characterX = abstractCharacter.getX();
         int characterY = abstractCharacter.getY();
 
@@ -398,8 +394,7 @@ public class Floor {
             return true;
         }
 
-        int cornerDistance = (circleDistanceX - squareSize / 2) ^ 2 +
-                (circleDistanceY - squareSize / 2) ^ 2;
+        int cornerDistance = (circleDistanceX - squareSize / 2) ^ 2 + (circleDistanceY - squareSize / 2) ^ 2;
 
         return (cornerDistance <= (circleRadius ^ 2));
     }

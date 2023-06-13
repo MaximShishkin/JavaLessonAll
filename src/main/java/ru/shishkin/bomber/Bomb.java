@@ -25,7 +25,6 @@ public class Bomb {
         return colIndex;
     }
 
-    // This method is static since every bomb has the same size.
     public static int getBOMBSIZE() {
         return BOMBSIZE;
     }
