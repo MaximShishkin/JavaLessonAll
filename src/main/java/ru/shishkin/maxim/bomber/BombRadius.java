@@ -1,4 +1,4 @@
-package ru.shishkin.bomber;
+package ru.shishkin.maxim.bomber;
 
 public class BombRadius extends AbstractPowerup {
     public BombRadius(int rowIndex, int colIndex) {

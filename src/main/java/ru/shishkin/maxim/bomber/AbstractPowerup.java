@@ -1,4 +1,4 @@
-package ru.shishkin.bomber;
+package ru.shishkin.maxim.bomber;
 
 public class AbstractPowerup {
     private final static int POWERUP_SIZE = 30;

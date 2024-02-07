@@ -1,4 +1,4 @@
-package ru.shishkin.bomber;
+package ru.shishkin.maxim.bomber;
 
 public class AbstractCharacter {
     private final static int SIZE = 30;

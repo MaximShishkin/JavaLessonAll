@@ -1,4 +1,4 @@
-package ru.shishkin.bomber;
+package ru.shishkin.maxim.bomber;
 
 public class Explosion {
     private int rowIndex;

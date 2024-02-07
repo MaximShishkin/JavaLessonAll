@@ -1,8 +1,8 @@
-package ru.shishkin.bomber;
+package ru.shishkin.maxim.bomber;
 
 import java.util.*;
 
-import ru.shishkin.bomber.AbstractCharacter.Move;
+import ru.shishkin.maxim.bomber.AbstractCharacter.Move;
 
 public class Floor {
     private final static double CHANCE_FOR_BREAKABLE_BLOCK = 0.4;
