@@ -17,9 +17,9 @@
       </list>
     </option>
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 8
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
   <component name="ProjectId" id="2AZI3Z4NeOoVTH9TXjrqYzATxHD" />
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
@@ -27,12 +27,14 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.App.executor": "Run",
+    "Maven.Bomber [clean].executor": "Run",
+    "Maven.Bomber [install].executor": "Run",
     "Maven.bomber [clean].executor": "Run",
     "Maven.bomber [install].executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "last_opened_file_path": "C:/Users/Admin/Desktop/gitt/calculator",
-    "project.structure.last.edited": "Modules",
+    "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2"
   }
@@ -52,7 +54,7 @@
   <component name="RunManager">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ru.shishkin.maxim.bomber.App" />
-      <module name="Bomber" />
+      <module name="bomber" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
